@@ -42,18 +42,13 @@ Theta_grad = zeros(size(Theta));
 
 
 
+err_rat = X * Theta' - Y;
+error_factor = err_rat .* R;
+J = sum(error_factor .^ 2, 'all') / 2;
+J = J + (lambda * sum(Theta .^ 2, 'all') / 2) + (lambda * sum(X .^ 2, 'all') / 2);
 
-
-
-
-
-
-
-
-
-
-
-
+X_grad = error_factor * Theta + lambda * X;
+Theta_grad = error_factor' * X + lambda * Theta;
 
 % =============================================================
 

@@ -23,11 +23,22 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
-
-
-
-
+x1 = [1, 2, 1];
+x2 = [0, 4, -1];
+values = [0.01, 0,03, 0.1, 0.3, 1, 3, 10, 30];
+min = 100000;
+for cval = values
+   for sval = values
+      model = svmTrain(X, y, cval, @(x1, x2)gaussianKernel(x1, x2, sval));
+      pred = svmPredict(model, Xval);
+      err = mean(double(pred ~= yval));
+      if err < min
+          min = err;
+          C = cval;
+          sigma = sval;
+      end
+   end
+end
 
 % =========================================================================
 

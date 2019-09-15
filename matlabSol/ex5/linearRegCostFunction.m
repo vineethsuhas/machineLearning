@@ -19,16 +19,17 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+% X = [ones(m, 1) X];
 
+h = X * theta;
+J = sum((h - y) .^ 2) / (2 * m);
+J = J + (lambda * sum(theta(2:length(theta)) .^ 2)) / (2 * m);
 
-
-
-
-
-
-
-
-
+const = h - y;
+grad(1) = sum(const .* X(:, 1)) / m;
+for each = 2:length(theta)
+   grad(each) = (sum(const .* X(:, each)) + lambda * theta(each)) / m;
+end
 
 % =========================================================================
 

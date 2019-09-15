@@ -41,7 +41,7 @@ function out = output(partId, auxstring)
     sim = gaussianKernel(x1, x2, 2);
     out = sprintf('%0.5f ', sim);
   elseif partId == '2'
-    load('ex6data3.mat');
+    load('/Users/vineethsuhas/vineeth/handsOn/coursera/machineLearning/data/ex6/ex6data3.mat');
     [C, sigma] = dataset3Params(X, y, Xval, yval);
     out = sprintf('%0.5f ', C);
     out = [out sprintf('%0.5f ', sigma)];

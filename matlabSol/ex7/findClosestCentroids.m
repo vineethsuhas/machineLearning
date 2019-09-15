@@ -22,9 +22,24 @@ idx = zeros(size(X,1), 1);
 %
 
 
+idx = zeros(length(X), K);
+for c = 1:K
+    subs = bsxfun(@minus, X, centroids(c,:));
+    idx(:, c) = sum(subs .^ 2, 2);
+end
 
-
-
+[vals, idx] = min(idx, [], 2);
+    
+% for i = 1:length(X)
+%     min = inf;
+%     for j = 1:K
+%         dist = sqrt(sum((X(i, :) - centroids(j, :)) .^ 2));
+%         if dist < min
+%             min = dist;
+%             idx(i) = j;
+%         end
+%     end
+% end
 
 
 % =============================================================
